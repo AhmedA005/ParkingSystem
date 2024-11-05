@@ -33,13 +33,13 @@ public class Car extends Thread {
                         (4 - parkingService.getAvailableSpots() - 1) + " spots occupied)");
                 parkingService.leave();
             } else {
-                System.out.println("Car " + id + " from Gate " + gateNumber + " waiting for a spot");
+                System.out.println("Car " + id + " from Gate " + gateNumber + " waiting for a spot.");
                 parkingService.waitForSpot();
 
                 long endTime = System.currentTimeMillis();
                 long waitingTime = (endTime - startTime) / 1000;
                 System.out.println("Car " + id + " from Gate " + gateNumber + " parked after waiting for " + waitingTime + " units of time. (Parking Status: " +
-                        (4 - parkingService.getAvailableSpots()) + " spots occupied");
+                        (4 - parkingService.getAvailableSpots()) + " spots occupied)");
 
                 Thread.sleep(parkingDuration * 1000);
                 System.out.println("Car " + id + " from Gate " + gateNumber + " left after " + parkingDuration + " units of time. (Parking Status: " +
