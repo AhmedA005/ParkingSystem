@@ -7,12 +7,24 @@ public class ParkingService implements IParkingService {
     private BlockingQueue<Car> waitingQueue;
 
     ParkingService(int parkingSpots) {
-       this.parkingSemaphore = new Semaphore(parkingSpots, true);
-       this.waitingQueue = new LinkedBlockingQueue<Car>();
+        this.parkingSemaphore = new Semaphore(parkingSpots, true);
+        this.waitingQueue = new LinkedBlockingQueue<Car>();
     }
 
     @Override
     public boolean park() {
+        if (!waitingQueue.isEmpty()) {
+            waitingQueue.offer((Car) Thread.currentThread());
+            try {
+                // Wait until the current car's turn comes up
+                waitingQueue.take();
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+                return false;
+            }
+        }
+
+        // current car's turn has come up, try to acquire a parking spot
         return parkingSemaphore.tryAcquire();
     }
 
@@ -29,12 +41,12 @@ public class ParkingService implements IParkingService {
     }
 
     @Override
-    public int getOccupiedSpots() {
+    public synchronized int getOccupiedSpots() {
         return 4 - parkingSemaphore.availablePermits();
     }
 
     @Override
-    public int getAvailableSpots() {
+    public synchronized int getAvailableSpots() {
         return parkingSemaphore.availablePermits();
     }
 }
