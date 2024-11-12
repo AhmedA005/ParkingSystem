@@ -34,7 +34,7 @@ public class Car extends Thread {
                 parkingService.leave();
             } else {
                 System.out.println("Car " + id + " from Gate " + gateNumber + " waiting for a spot.");
-                parkingService.waitForSpot();
+                parkingService.waitForSpot(this);
 
                 long endTime = System.currentTimeMillis();
                 long waitingTime = (endTime - startTime) / 1000;

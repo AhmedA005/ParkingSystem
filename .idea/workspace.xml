@@ -5,13 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b5cf17eb-2fef-48ea-89f8-73b39fb69fe0" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/IParkingService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/ParkingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/input.txt" beforeDir="false" afterPath="$PROJECT_DIR$/input.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Car.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Car.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Gate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Gate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/IParkingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/IParkingService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/ParkingLot.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/ParkingService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/ParkingService.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -73,22 +72,13 @@
       <workItem from="1730648196898" duration="464000" />
       <workItem from="1730651150221" duration="4585000" />
       <workItem from="1730747186821" duration="263000" />
-      <workItem from="1730820888996" duration="3863000" />
+      <workItem from="1730820888996" duration="4236000" />
+      <workItem from="1731167247356" duration="211000" />
+      <workItem from="1731437116525" duration="650000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/Main.java</url>
-          <line>18</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

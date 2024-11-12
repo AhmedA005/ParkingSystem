@@ -1,12 +1,14 @@
+import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.Semaphore;
 
 public class ParkingService implements IParkingService {
-    private int parkingSpots;
     private Semaphore parkingSemaphore;
+    private BlockingQueue<Car> waitingQueue;
 
-    ParkingService(int parkingSpots, Semaphore parkingSemaphore) {
-        this.parkingSpots = parkingSpots;
-        this.parkingSemaphore = parkingSemaphore;
+    ParkingService(int parkingSpots) {
+       this.parkingSemaphore = new Semaphore(parkingSpots, true);
+       this.waitingQueue = new LinkedBlockingQueue<Car>();
     }
 
     @Override
@@ -15,8 +17,10 @@ public class ParkingService implements IParkingService {
     }
 
     @Override
-    public void waitForSpot() throws InterruptedException {
+    public void waitForSpot(Car car) throws InterruptedException {
+        waitingQueue.put(car);
         parkingSemaphore.acquire();
+        waitingQueue.take();
     }
 
     @Override
@@ -26,7 +30,7 @@ public class ParkingService implements IParkingService {
 
     @Override
     public int getOccupiedSpots() {
-        return parkingSpots - parkingSemaphore.availablePermits();
+        return 4 - parkingSemaphore.availablePermits();
     }
 
     @Override

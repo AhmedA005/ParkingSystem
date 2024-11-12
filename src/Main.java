@@ -7,9 +7,8 @@ import java.util.concurrent.Semaphore;
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
     public static void main(String[] args) throws FileNotFoundException {
-        int parkingSpots = 4;
-        Semaphore semaphore = new Semaphore(parkingSpots, true);
-        ParkingService parkingService = new ParkingService(parkingSpots, semaphore);
+        final int parkingSpots = 4;
+        ParkingService parkingService = new ParkingService(parkingSpots);
 
         Gate gate1 = new Gate(1, parkingService);
         Gate gate2 = new Gate(2, parkingService);
