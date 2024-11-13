@@ -1,4 +1,3 @@
-import java.util.concurrent.Semaphore;
 
 public class Car extends Thread {
     private int id;
@@ -26,12 +25,16 @@ public class Car extends Thread {
 
             if (parkingService.park()) {
                 System.out.println("Car " + id + " from Gate " + gateNumber + " parked. (Parking Status: " +
-                        (4 - parkingService.getAvailableSpots()) + " spots occupied)");
-                Thread.sleep(parkingDuration * 1000);
+                        (parkingService.getOccupiedSpots()) + " spots occupied)");
 
-                System.out.println("Car " + id + " from Gate " + gateNumber + " left after " + parkingDuration + " units of time. (Parking Status: " +
-                        (4 - parkingService.getAvailableSpots() - 1) + " spots occupied)");
+                Thread.sleep(parkingDuration * 1000);
+                synchronized (parkingService) {
+                    System.out.println("Car " + id + " from Gate " + gateNumber + " left after " + parkingDuration + " units of time. (Parking Status: " +
+                            (parkingService.getOccupiedSpots() - 1) + " spots occupied)");
+                }
                 parkingService.leave();
+
+
             } else {
                 System.out.println("Car " + id + " from Gate " + gateNumber + " waiting for a spot.");
                 parkingService.waitForSpot(this);
@@ -39,11 +42,13 @@ public class Car extends Thread {
                 long endTime = System.currentTimeMillis();
                 long waitingTime = (endTime - startTime) / 1000;
                 System.out.println("Car " + id + " from Gate " + gateNumber + " parked after waiting for " + waitingTime + " units of time. (Parking Status: " +
-                        (4 - parkingService.getAvailableSpots()) + " spots occupied)");
+                        (parkingService.getOccupiedSpots()) + " spots occupied)");
 
                 Thread.sleep(parkingDuration * 1000);
-                System.out.println("Car " + id + " from Gate " + gateNumber + " left after " + parkingDuration + " units of time. (Parking Status: " +
-                        (4 - parkingService.getAvailableSpots() - 1) + " spots occupied)");
+                synchronized (parkingService) {
+                    System.out.println("Car " + id + " from Gate " + gateNumber + " left after " + parkingDuration + " units of time. (Parking Status: " +
+                            (parkingService.getOccupiedSpots() - 1) + " spots occupied)");
+                }
                 parkingService.leave();
             }
         } catch (InterruptedException e) {
